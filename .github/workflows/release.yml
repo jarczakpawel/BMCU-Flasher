@@ -35,7 +35,7 @@ jobs:
           NAME="BMCU Flasher"
 
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            py -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
+            python -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
               --icon icon.ico \
               --add-data "bmcu320.png;." \
               --add-data "icon.png;." \
