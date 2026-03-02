@@ -3,7 +3,6 @@ import argparse
 import os
 import struct
 import time
-import select
 import serial
 from serial.tools import list_ports
 
@@ -161,11 +160,9 @@ class WchIsp:
             self._rx += self.ser.read(n)
 
     def recv(self, expect_cmd: int, timeout_s: float):
-        fd = self.ser.fileno()
         end = time.monotonic() + timeout_s
         while True:
-            now = time.monotonic()
-            if now >= end:
+            if time.monotonic() >= end:
                 raise TimeoutError(f"timeout waiting for cmd=0x{expect_cmd:02x}")
 
             self._read_available()
@@ -192,8 +189,7 @@ class WchIsp:
                             print(f"RX cmd=0x{cmd:02x} code=0x{code:02x} ln={ln} data={data.hex()}")
                         return code, data
 
-            remain = end - now
-            select.select([fd], [], [], 0.02 if remain > 0.02 else remain)
+            time.sleep(0.002)
 
     def txrx(self, pkt: bytes, expect_cmd: int, timeout_s: float):
         if self.trace:
