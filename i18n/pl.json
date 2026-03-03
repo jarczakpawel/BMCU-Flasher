@@ -1,0 +1,92 @@
+{
+  "lang_label": "Jezyk:",
+  "mode_label": "Tryb:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (recznie BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "Odswiez",
+  "port_label": "Port:",
+  "firmware_label": "Firmware (.bin):",
+  "browse": "Wybierz",
+  "online": "Online",
+  "latest_fw_label": "Najnowszy firmware BMCU:",
+  "baud_label": "Baud:",
+  "fast_baud_label": "Szybki baud:",
+  "no_fast": "Bez fast",
+  "verify": "Weryfikuj",
+  "flash": "Flashuj",
+  "clear_log": "Wyczysc log",
+  "copy_log": "Kopiuj log",
+  "help": "Pomoc",
+
+  "warn_title": "UWAGA!",
+  "warn_text": "NIE podlaczaj USB ani nie flashuj, gdy BMCU jest podlaczone do drukarki. Zawsze podlaczaj/odlaczaj BMCU tylko przy wylaczonej drukarce. Aktualizacje firmware drukarki sa najbezpieczniejsze z odlaczonym BMCU.",
+
+  "log_time": "Czas",
+  "log_level": "Poziom",
+  "log_message": "Wiadomosc",
+
+  "menu_copy_selected": "Kopiuj zaznaczone",
+  "menu_copy_all": "Kopiuj wszystko",
+
+  "author_label": "Autor: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "Anuluj",
+  "select": "Wybierz",
+
+  "dlg_select_bin_title": "Wybierz firmware .bin",
+  "dlg_bin_filter": "Binarny",
+  "dlg_all_filter": "Wszystkie",
+
+  "err_generic": "BLAD",
+  "err_bad_vidpid": "Bledny VID/PID",
+  "err_select_bin": "Wybierz firmware .bin",
+  "err_bin_ext": "Firmware musi byc .bin",
+  "err_select_port": "Wybierz port",
+  "err_bad_baud": "Bledne wartosci baud",
+  "err_select_online": "Wybierz firmware online",
+  "err_bad_retract": "Bledny wybor retrakcji",
+
+  "help_usb_title": "Tryb USB",
+  "help_ttl_title": "Tryb TTL",
+  "help_step1": "Krok 1:",
+  "help_step2": "Krok 2:",
+  "help_step3": "Krok 3:",
+
+  "help_usb_s1": "- Podlacz BMCU przez USB",
+  "help_usb_s2": "- Wybierz port\n- (VID/PID zostaje CH340)",
+  "help_usb_s3": "- Wybierz firmware: Wybierz = z dysku, Online = pobierz najnowszy z internetu\n- Kliknij Flashuj",
+
+  "help_ttl_s1": "- Podlacz USB-Serial do BMCU\n- Wejdz w bootloader",
+  "help_ttl_s2": "- Wybierz typ USB-Serial (ustawia preset Baud/Fast baud)\n- Wybierz port\n- (VID/PID sluzy tylko do filtrowania portow)",
+  "help_ttl_s3": "- Wybierz firmware: Wybierz = z dysku, Online = pobierz najnowszy z internetu\n- Kliknij Flashuj",
+
+  "help_wiring": "Polaczenia:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- Przytrzymaj BOOT\n- Kliknij RESET\n- Pusc BOOT",
+
+  "help_drivers_title": "Sterowniki",
+  "help_drivers_ch340": "- Sterownik CH340/CH341 (WCH):",
+  "help_link_fw": "Firmware BMCU:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "Firmware online",
+  "online_header": "Wybierz firmware (online)",
+  "online_step1_title": "Krok 1 - Sila ladowania",
+  "online_step2_title": "Krok 2 - Slot i retrakcja",
+  "online_step3_title": "Krok 3 - Opcje",
+
+  "online_force_label": "Sila ladowania filamentu:",
+  "online_force_hint": "Standard: A1/A1 mini (i inne jesli dziala lepiej)\nHigh force: P1S/X1C/P2S itd. (dluga rurka PTFE / problemy z ladowaniem / stare wolne zebatki BMCU)\nOba dzialaja - wybierz co wolisz.",
+  "online_slot_label": "Slot BMCU:",
+  "online_retract_label": "Retrakcja:",
+  "online_retract_hint": "SOLO: polecane 9.5cm dla A1/A1 mini.\nDla dlugiej rurki PTFE (P1S/P2S/itd.) wybierz 60-90cm (SOLO dla dluzszych retrakcji uzywa plikow AMS_A).",
+  "online_autoload": "Autoload",
+  "online_rgb": "RGB LED (kolor filamentu)",
+  "online_opts_hint": "Autoload: automatyczne ladowanie dla DM (2 mikrowylaczniki). Dla plytek 1-switch: autoload przez szybkie tapniecie buforem.\nRGB LED: dioda kanalu dopasowana do koloru filamentu. Wylacz, jesli nie chcesz swiatel."
+}

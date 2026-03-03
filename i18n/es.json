@@ -1,0 +1,92 @@
+{
+  "lang_label": "Idioma:",
+  "mode_label": "Modo:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (manual BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "Actualizar",
+  "port_label": "Puerto:",
+  "firmware_label": "Firmware (.bin):",
+  "browse": "Buscar",
+  "online": "Online",
+  "latest_fw_label": "Ultimo firmware BMCU:",
+  "baud_label": "Baud:",
+  "fast_baud_label": "Fast baud:",
+  "no_fast": "Sin fast",
+  "verify": "Verificar",
+  "flash": "Flashear",
+  "clear_log": "Borrar log",
+  "copy_log": "Copiar log",
+  "help": "Ayuda",
+
+  "warn_title": "ADVERTENCIA!",
+  "warn_text": "NO conectes USB ni flashees mientras el BMCU este conectado a la impresora. Conecta/desconecta el BMCU solo con la impresora apagada. Las actualizaciones de firmware de la impresora son mas seguras con el BMCU desconectado.",
+
+  "log_time": "Hora",
+  "log_level": "Nivel",
+  "log_message": "Mensaje",
+
+  "menu_copy_selected": "Copiar seleccionado",
+  "menu_copy_all": "Copiar todo",
+
+  "author_label": "Autor: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "Cancelar",
+  "select": "Seleccionar",
+
+  "dlg_select_bin_title": "Seleccionar firmware .bin",
+  "dlg_bin_filter": "Binario",
+  "dlg_all_filter": "Todos",
+
+  "err_generic": "ERROR",
+  "err_bad_vidpid": "VID/PID invalido",
+  "err_select_bin": "Selecciona firmware .bin",
+  "err_bin_ext": "El firmware debe ser .bin",
+  "err_select_port": "Selecciona puerto",
+  "err_bad_baud": "Valores baud invalidos",
+  "err_select_online": "Selecciona firmware online",
+  "err_bad_retract": "Seleccion de retraccion invalida",
+
+  "help_usb_title": "Modo USB",
+  "help_ttl_title": "Modo TTL",
+  "help_step1": "Paso 1:",
+  "help_step2": "Paso 2:",
+  "help_step3": "Paso 3:",
+
+  "help_usb_s1": "- Conecta BMCU por USB",
+  "help_usb_s2": "- Selecciona puerto\n- (VID/PID se queda en CH340)",
+  "help_usb_s3": "- Selecciona firmware: Buscar = disco, Online = descargar el ultimo\n- Haz clic en Flashear",
+
+  "help_ttl_s1": "- Conecta USB-Serial al BMCU\n- Entra en bootloader",
+  "help_ttl_s2": "- Selecciona tipo USB-Serial (presets Baud/Fast baud)\n- Selecciona puerto\n- (VID/PID solo para filtrar puertos)",
+  "help_ttl_s3": "- Selecciona firmware: Buscar = disco, Online = descargar el ultimo\n- Haz clic en Flashear",
+
+  "help_wiring": "Cableado:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- Mantener BOOT\n- Pulsar RESET\n- Soltar BOOT",
+
+  "help_drivers_title": "Drivers",
+  "help_drivers_ch340": "- Driver CH340/CH341 (WCH):",
+  "help_link_fw": "Firmware BMCU:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "Firmware online",
+  "online_header": "Seleccionar firmware (online)",
+  "online_step1_title": "Paso 1 - Fuerza de carga",
+  "online_step2_title": "Paso 2 - Slot y retraccion",
+  "online_step3_title": "Paso 3 - Opciones",
+
+  "online_force_label": "Fuerza de carga del filamento:",
+  "online_force_hint": "Standard: A1/A1 mini (y otros si funciona mejor)\nHigh force: P1S/X1C/P2S etc. (PTFE largo / problemas de carga / engranajes BMCU antiguos y lentos)\nAmbos funcionan - elige lo que prefieras.",
+  "online_slot_label": "Slot BMCU:",
+  "online_retract_label": "Retraccion:",
+  "online_retract_hint": "SOLO: recomendado 9.5cm para A1/A1 mini.\nPara PTFE largo (P1S/P2S/etc.) elige 60-90cm (SOLO usa archivos AMS_A para retracciones largas).",
+  "online_autoload": "Autoload",
+  "online_rgb": "LED RGB (color del filamento)",
+  "online_opts_hint": "Autoload: carga automatica para DM (2 switches). Para placas 1-switch: autoload con un toque rapido del buffer.\nLED RGB: el LED del canal coincide con el color del filamento. Desactiva si no quieres luces."
+}

@@ -1,0 +1,92 @@
+{
+  "lang_label": "Язык:",
+  "mode_label": "Режим:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (вручную BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "Обновить",
+  "port_label": "Порт:",
+  "firmware_label": "Прошивка (.bin):",
+  "browse": "Обзор",
+  "online": "Онлайн",
+  "latest_fw_label": "Последняя прошивка BMCU:",
+  "baud_label": "Baud:",
+  "fast_baud_label": "Fast baud:",
+  "no_fast": "Без fast",
+  "verify": "Проверка",
+  "flash": "Прошить",
+  "clear_log": "Очистить лог",
+  "copy_log": "Копировать лог",
+  "help": "Помощь",
+
+  "warn_title": "ВНИМАНИЕ!",
+  "warn_text": "НЕ подключайте USB и НЕ прошивайте, пока BMCU подключен к принтеру. Подключайте/отключайте BMCU только при выключенном принтере. Обновление прошивки принтера безопаснее всего выполнять с отключенным BMCU.",
+
+  "log_time": "Время",
+  "log_level": "Уровень",
+  "log_message": "Сообщение",
+
+  "menu_copy_selected": "Копировать выбранное",
+  "menu_copy_all": "Копировать все",
+
+  "author_label": "Автор: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "Отмена",
+  "select": "Выбрать",
+
+  "dlg_select_bin_title": "Выберите прошивку .bin",
+  "dlg_bin_filter": "Бинарный",
+  "dlg_all_filter": "Все",
+
+  "err_generic": "ОШИБКА",
+  "err_bad_vidpid": "Неверный VID/PID",
+  "err_select_bin": "Выберите прошивку .bin",
+  "err_bin_ext": "Прошивка должна быть .bin",
+  "err_select_port": "Выберите порт",
+  "err_bad_baud": "Неверные значения baud",
+  "err_select_online": "Выберите онлайн прошивку",
+  "err_bad_retract": "Неверный выбор ретракции",
+
+  "help_usb_title": "Режим USB",
+  "help_ttl_title": "Режим TTL",
+  "help_step1": "Шаг 1:",
+  "help_step2": "Шаг 2:",
+  "help_step3": "Шаг 3:",
+
+  "help_usb_s1": "- Подключите BMCU по USB",
+  "help_usb_s2": "- Выберите порт\n- (VID/PID остается CH340)",
+  "help_usb_s3": "- Выберите прошивку: Обзор = с диска, Онлайн = скачать последнюю из интернета\n- Нажмите Прошить",
+
+  "help_ttl_s1": "- Подключите USB-Serial к BMCU\n- Войдите в bootloader",
+  "help_ttl_s2": "- Выберите тип USB-Serial (preset Baud/Fast baud)\n- Выберите порт\n- (VID/PID только для фильтрации портов)",
+  "help_ttl_s3": "- Выберите прошивку: Обзор = с диска, Онлайн = скачать последнюю из интернета\n- Нажмите Прошить",
+
+  "help_wiring": "Подключение:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- Удерживайте BOOT\n- Нажмите RESET\n- Отпустите BOOT",
+
+  "help_drivers_title": "Драйверы",
+  "help_drivers_ch340": "- Драйвер CH340/CH341 (WCH):",
+  "help_link_fw": "Прошивка BMCU:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "Онлайн прошивка",
+  "online_header": "Выберите прошивку (онлайн)",
+  "online_step1_title": "Шаг 1 - Сила загрузки",
+  "online_step2_title": "Шаг 2 - Слот и ретракция",
+  "online_step3_title": "Шаг 3 - Опции",
+
+  "online_force_label": "Сила загрузки филамента:",
+  "online_force_hint": "Standard: A1/A1 mini (и другие если работает лучше)\nHigh force: P1S/X1C/P2S и т.д. (длинный PTFE / проблемы загрузки / старые низкооборотные шестерни BMCU)\nОба варианта работают - выбирайте что удобнее.",
+  "online_slot_label": "Слот BMCU:",
+  "online_retract_label": "Ретракция:",
+  "online_retract_hint": "SOLO: рекомендуется 9.5cm для A1/A1 mini.\nДля длинного PTFE (P1S/P2S/и т.д.) выберите 60-90cm (SOLO использует файлы AMS_A для длинной ретракции).",
+  "online_autoload": "Autoload",
+  "online_rgb": "RGB LED (цвет филамента)",
+  "online_opts_hint": "Autoload: автоматическая загрузка для DM (2 переключателя). Для плат 1-switch: autoload через быстрый tap буфера.\nRGB LED: LED канала соответствует заданному цвету филамента. Отключите если не нужны огни."
+}

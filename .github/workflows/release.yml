@@ -39,7 +39,6 @@ jobs:
               --icon icon.ico \
               --add-data "bmcu320.png;." \
               --add-data "icon.png;." \
-              --add-data "drivers;drivers" \
               bmcu_flasher_gui.py
 
             powershell -NoProfile -Command "Compress-Archive -Path 'dist\\$NAME\\*' -DestinationPath 'BMCU-Flasher-windows-x64.zip'"
@@ -49,7 +48,6 @@ jobs:
               --icon icon.icns \
               --add-data "bmcu320.png:." \
               --add-data "icon.png:." \
-              --add-data "drivers:drivers" \
               bmcu_flasher_gui.py
 
             ditto -c -k --sequesterRsrc --keepParent "dist/$NAME.app" "BMCU-Flasher-macos.zip"
@@ -58,7 +56,6 @@ jobs:
             python3 -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
               --add-data "bmcu320.png:." \
               --add-data "icon.png:." \
-              --add-data "drivers:drivers" \
               bmcu_flasher_gui.py
 
             tar -C dist -czf "BMCU-Flasher-linux-x64.tar.gz" "$NAME"

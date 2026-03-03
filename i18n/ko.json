@@ -1,0 +1,92 @@
+{
+  "lang_label": "언어:",
+  "mode_label": "모드:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (수동 BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "새로고침",
+  "port_label": "포트:",
+  "firmware_label": "펌웨어 (.bin):",
+  "browse": "찾아보기",
+  "online": "온라인",
+  "latest_fw_label": "최신 BMCU 펌웨어:",
+  "baud_label": "Baud:",
+  "fast_baud_label": "Fast baud:",
+  "no_fast": "고속 사용 안 함",
+  "verify": "검증",
+  "flash": "플래시",
+  "clear_log": "로그 지우기",
+  "copy_log": "로그 복사",
+  "help": "도움말",
+
+  "warn_title": "경고!",
+  "warn_text": "BMCU가 프린터에 연결된 상태에서는 USB를 연결하거나 플래시하지 마세요. BMCU는 항상 프린터 전원이 꺼진 상태에서만 연결/분리하세요. 프린터 펌웨어 업데이트는 BMCU를 분리한 상태가 가장 안전합니다.",
+
+  "log_time": "시간",
+  "log_level": "레벨",
+  "log_message": "메시지",
+
+  "menu_copy_selected": "선택 항목 복사",
+  "menu_copy_all": "모두 복사",
+
+  "author_label": "작성자: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "취소",
+  "select": "선택",
+
+  "dlg_select_bin_title": "펌웨어 .bin 선택",
+  "dlg_bin_filter": "바이너리",
+  "dlg_all_filter": "전체",
+
+  "err_generic": "오류",
+  "err_bad_vidpid": "잘못된 VID/PID",
+  "err_select_bin": "펌웨어 .bin을 선택하세요",
+  "err_bin_ext": "펌웨어는 .bin이어야 합니다",
+  "err_select_port": "포트를 선택하세요",
+  "err_bad_baud": "Baud 값이 잘못되었습니다",
+  "err_select_online": "온라인 펌웨어를 선택하세요",
+  "err_bad_retract": "리트랙션 선택이 잘못되었습니다",
+
+  "help_usb_title": "USB 모드",
+  "help_ttl_title": "TTL 모드",
+  "help_step1": "단계 1:",
+  "help_step2": "단계 2:",
+  "help_step3": "단계 3:",
+
+  "help_usb_s1": "- USB로 BMCU 연결",
+  "help_usb_s2": "- 포트 선택\n- (VID/PID는 CH340 유지)",
+  "help_usb_s3": "- 펌웨어 선택: 찾아보기 = 디스크, 온라인 = 인터넷에서 최신 다운로드\n- 플래시 클릭",
+
+  "help_ttl_s1": "- USB-Serial을 BMCU에 배선\n- 부트로더 진입",
+  "help_ttl_s2": "- USB-Serial 타입 선택 (Baud/Fast baud 프리셋 설정)\n- 포트 선택\n- (VID/PID는 포트 필터링용)",
+  "help_ttl_s3": "- 펌웨어 선택: 찾아보기 = 디스크, 온라인 = 인터넷에서 최신 다운로드\n- 플래시 클릭",
+
+  "help_wiring": "배선:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "부트로더:",
+  "help_boot_steps": "- BOOT 누름\n- RESET 탭\n- BOOT 놓기",
+
+  "help_drivers_title": "드라이버",
+  "help_drivers_ch340": "- CH340/CH341 드라이버 (WCH):",
+  "help_link_fw": "BMCU 펌웨어:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "온라인 펌웨어",
+  "online_header": "펌웨어 선택 (온라인)",
+  "online_step1_title": "단계 1 - 로드 힘",
+  "online_step2_title": "단계 2 - 슬롯 및 리트랙션",
+  "online_step3_title": "단계 3 - 옵션",
+
+  "online_force_label": "필라멘트 로드 힘:",
+  "online_force_hint": "Standard: A1/A1 mini (다른 기종도 더 잘 되면 사용)\nHigh force: P1S/X1C/P2S 등 (긴 PTFE 경로 / 로드 문제 / 구형 저RPM BMCU 기어)\n둘 다 동작합니다 - 원하는 것을 선택하세요.",
+  "online_slot_label": "BMCU 슬롯:",
+  "online_retract_label": "리트랙션:",
+  "online_retract_hint": "SOLO: A1/A1 mini에는 9.5cm 권장.\n긴 PTFE 경로(P1S/P2S 등)는 60-90cm 선택 (SOLO는 긴 리트랙션에 AMS_A 파일 사용).",
+  "online_autoload": "오토로드",
+  "online_rgb": "RGB LED (필라멘트 색상)",
+  "online_opts_hint": "오토로드: DM(스위치 2개) 자동 로딩. 1-switch 보드: 버퍼 빠른 탭으로 오토로드.\nRGB LED: 채널 LED가 설정된 필라멘트 색상과 일치. 불빛이 싫으면 끄세요."
+}

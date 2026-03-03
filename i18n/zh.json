@@ -1,0 +1,92 @@
+{
+  "lang_label": "语言:",
+  "mode_label": "模式:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (手动 BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "刷新",
+  "port_label": "端口:",
+  "firmware_label": "固件 (.bin):",
+  "browse": "浏览",
+  "online": "在线",
+  "latest_fw_label": "最新 BMCU 固件:",
+  "baud_label": "波特率:",
+  "fast_baud_label": "快速波特率:",
+  "no_fast": "禁用快速",
+  "verify": "验证",
+  "flash": "烧录",
+  "clear_log": "清空日志",
+  "copy_log": "复制日志",
+  "help": "帮助",
+
+  "warn_title": "警告!",
+  "warn_text": "当 BMCU 连接到打印机时, 请勿插入 USB 或进行烧录。请始终在打印机断电状态下连接/断开 BMCU。更新打印机固件时, 最安全的做法是断开 BMCU。",
+
+  "log_time": "时间",
+  "log_level": "级别",
+  "log_message": "消息",
+
+  "menu_copy_selected": "复制所选",
+  "menu_copy_all": "全部复制",
+
+  "author_label": "作者: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "取消",
+  "select": "选择",
+
+  "dlg_select_bin_title": "选择固件 .bin",
+  "dlg_bin_filter": "二进制",
+  "dlg_all_filter": "所有",
+
+  "err_generic": "错误",
+  "err_bad_vidpid": "VID/PID 错误",
+  "err_select_bin": "请选择固件 .bin",
+  "err_bin_ext": "固件必须为 .bin",
+  "err_select_port": "请选择端口",
+  "err_bad_baud": "波特率数值错误",
+  "err_select_online": "请选择在线固件",
+  "err_bad_retract": "回抽选项错误",
+
+  "help_usb_title": "USB 模式",
+  "help_ttl_title": "TTL 模式",
+  "help_step1": "步骤 1:",
+  "help_step2": "步骤 2:",
+  "help_step3": "步骤 3:",
+
+  "help_usb_s1": "- 通过 USB 连接 BMCU",
+  "help_usb_s2": "- 选择端口\n- (VID/PID 保持为 CH340)",
+  "help_usb_s3": "- 选择固件: 浏览 = 本地文件, 在线 = 从互联网下载最新\n- 点击 烧录",
+
+  "help_ttl_s1": "- 将 USB-Serial 连接到 BMCU\n- 进入 bootloader",
+  "help_ttl_s2": "- 选择 USB-Serial 类型 (设置 Baud/Fast baud 预设)\n- 选择端口\n- (VID/PID 仅用于端口筛选)",
+  "help_ttl_s3": "- 选择固件: 浏览 = 本地文件, 在线 = 从互联网下载最新\n- 点击 烧录",
+
+  "help_wiring": "接线:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- 按住 BOOT\n- 点按 RESET\n- 松开 BOOT",
+
+  "help_drivers_title": "驱动",
+  "help_drivers_ch340": "- CH340/CH341 驱动 (WCH):",
+  "help_link_fw": "BMCU 固件:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "在线固件",
+  "online_header": "选择固件 (在线)",
+  "online_step1_title": "步骤 1 - 装载力度",
+  "online_step2_title": "步骤 2 - 槽位与回抽",
+  "online_step3_title": "步骤 3 - 选项",
+
+  "online_force_label": "耗材装载力度:",
+  "online_force_hint": "Standard: A1/A1 mini (以及其他机型, 如果效果更好)\nHigh force: P1S/X1C/P2S 等 (PTFE 路径长 / 装载问题 / 老旧低转速 BMCU 齿轮)\n两者都可用 - 按你的偏好选择。",
+  "online_slot_label": "BMCU 槽位:",
+  "online_retract_label": "回抽:",
+  "online_retract_hint": "SOLO: 建议 A1/A1 mini 使用 9.5cm。\nPTFE 路径较长 (P1S/P2S 等) 请选择 60-90cm (SOLO 更长回抽会使用 AMS_A 文件)。",
+  "online_autoload": "自动装载",
+  "online_rgb": "RGB LED (耗材颜色)",
+  "online_opts_hint": "自动装载: DM (2 个开关) 的自动装载。1-switch 板: 通过快速按压缓冲器触发自动装载。\nRGB LED: 通道 LED 与设置的耗材颜色一致。不需要灯光可关闭。"
+}

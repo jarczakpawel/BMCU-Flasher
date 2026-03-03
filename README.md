@@ -2,6 +2,8 @@
 
 Cross-platform flasher for BMCU (WCH ISP protocol).
 
+![GUI](gui.jpg)
+
 - OS: Linux / Windows / macOS
 - Modes:
   - USB (BMCU with CH340 on board, AutoDI)
@@ -17,15 +19,19 @@ Download prebuilt binaries from Releases:
 Latest BMCU firmware:
 https://github.com/jarczakpawel/BMCU-C-PJARCZAK
 
-## Drivers (CH340)
-If your system does not show a serial port for CH340:
-- Drivers are available in the drivers/ folder.
+GUI has "Online" firmware selection (no manual searching/downloading):
+- choose mode (Standard / High force)
+- choose slot (SOLO / AMS_A / AMS_B / AMS_C / AMS_D)
+- choose retract length, AUTOLOAD, RGB
+- the app downloads the selected firmware and flashes it
 
-Linux usually works out-of-the-box (kernel ch341).
+## Drivers (CH340)
+In USB mode (CH340), drivers may be required on Windows.
+Linux and macOS usually work out-of-the-box.
 
 ## Usage
 GUI:
-- Run the app and click Help inside the program.
+- Use the app and click "Help" inside the program.
 
 CLI (optional):
 - USB (auto port by VID/PID):

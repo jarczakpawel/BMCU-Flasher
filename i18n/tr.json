@@ -1,0 +1,92 @@
+{
+  "lang_label": "Dil:",
+  "mode_label": "Mod:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (manuel BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "Yenile",
+  "port_label": "Port:",
+  "firmware_label": "Firmware (.bin):",
+  "browse": "Gozat",
+  "online": "Online",
+  "latest_fw_label": "En yeni BMCU firmware:",
+  "baud_label": "Baud:",
+  "fast_baud_label": "Fast baud:",
+  "no_fast": "Fast yok",
+  "verify": "Dogrula",
+  "flash": "Flash",
+  "clear_log": "Log temizle",
+  "copy_log": "Log kopyala",
+  "help": "Yardim",
+
+  "warn_title": "UYARI!",
+  "warn_text": "BMCU yaziciya bagliyken USB takmayin ve flash yapmayin. BMCU'yu yalnizca yazici kapaliyken baglayin/ayirin. Yazici firmware guncellemesi icin en guvenlisi BMCU bagli degilken yapmaktir.",
+
+  "log_time": "Zaman",
+  "log_level": "Seviye",
+  "log_message": "Mesaj",
+
+  "menu_copy_selected": "Secileni kopyala",
+  "menu_copy_all": "Hepsini kopyala",
+
+  "author_label": "Yazar: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "Iptal",
+  "select": "Sec",
+
+  "dlg_select_bin_title": "Firmware .bin sec",
+  "dlg_bin_filter": "Binary",
+  "dlg_all_filter": "Hepsi",
+
+  "err_generic": "HATA",
+  "err_bad_vidpid": "Hatali VID/PID",
+  "err_select_bin": "Firmware .bin secin",
+  "err_bin_ext": "Firmware .bin olmali",
+  "err_select_port": "Port secin",
+  "err_bad_baud": "Hatali baud degerleri",
+  "err_select_online": "Online firmware secin",
+  "err_bad_retract": "Hatali retract secimi",
+
+  "help_usb_title": "USB modu",
+  "help_ttl_title": "TTL modu",
+  "help_step1": "Adim 1:",
+  "help_step2": "Adim 2:",
+  "help_step3": "Adim 3:",
+
+  "help_usb_s1": "- BMCU'yu USB ile baglayin",
+  "help_usb_s2": "- Port secin\n- (VID/PID CH340 olarak kalir)",
+  "help_usb_s3": "- Firmware secin: Gozat = diskten, Online = internetten en yeniyi indir\n- Flash'a basin",
+
+  "help_ttl_s1": "- USB-Serial'i BMCU'ya baglayin\n- Bootloader'a girin",
+  "help_ttl_s2": "- USB-Serial turunu secin (Baud/Fast baud ayarlar)\n- Port secin\n- (VID/PID yalnizca port filtreleme icin)",
+  "help_ttl_s3": "- Firmware secin: Gozat = diskten, Online = internetten en yeniyi indir\n- Flash'a basin",
+
+  "help_wiring": "Baglanti:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- BOOT basili tut\n- RESET'e dokun\n- BOOT'u birak",
+
+  "help_drivers_title": "Suruculer",
+  "help_drivers_ch340": "- CH340/CH341 surucusu (WCH):",
+  "help_link_fw": "BMCU firmware:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "Online firmware",
+  "online_header": "Firmware sec (online)",
+  "online_step1_title": "Adim 1 - Yukleme kuvveti",
+  "online_step2_title": "Adim 2 - Slot ve retract",
+  "online_step3_title": "Adim 3 - Secenekler",
+
+  "online_force_label": "Filament yukleme kuvveti:",
+  "online_force_hint": "Standard: A1/A1 mini (ve daha iyi calisiyorsa digerleri)\nHigh force: P1S/X1C/P2S vb. (uzun PTFE / yukleme sorunu / eski dusuk RPM BMCU dislileri)\nIkisi de calisir - tercihinize gore secin.",
+  "online_slot_label": "BMCU slot:",
+  "online_retract_label": "Retract:",
+  "online_retract_hint": "SOLO: A1/A1 mini icin 9.5cm onerilir.\nUzun PTFE icin (P1S/P2S/vb.) 60-90cm secin (SOLO daha uzun retract icin AMS_A dosyalarini kullanir).",
+  "online_autoload": "Autoload",
+  "online_rgb": "RGB LED (filament rengi)",
+  "online_opts_hint": "Autoload: DM (2 switch) icin otomatik yukleme. 1-switch kartlarda: buffer'a hizli dokunus ile autoload.\nRGB LED: kanal LED'i filament rengi ile eslesir. Isik istemiyorsaniz kapatin."
+}

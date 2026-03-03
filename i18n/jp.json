@@ -1,0 +1,92 @@
+{
+  "lang_label": "言語:",
+  "mode_label": "モード:",
+  "mode_usb": "USB (AutoDI)",
+  "mode_ttl": "TTL (手動 BOOT+RESET)",
+  "vid_label": "VID:",
+  "pid_label": "PID:",
+  "adapter_label": "USB-Serial:",
+  "refresh": "更新",
+  "port_label": "ポート:",
+  "firmware_label": "ファームウェア (.bin):",
+  "browse": "参照",
+  "online": "オンライン",
+  "latest_fw_label": "最新のBMCUファームウェア:",
+  "baud_label": "ボーレート:",
+  "fast_baud_label": "高速ボーレート:",
+  "no_fast": "高速なし",
+  "verify": "検証",
+  "flash": "書き込み",
+  "clear_log": "ログをクリア",
+  "copy_log": "ログをコピー",
+  "help": "ヘルプ",
+
+  "warn_title": "警告!",
+  "warn_text": "BMCUがプリンターに接続されている間はUSBを挿したり書き込みを行わないでください。BMCUの接続/取り外しは必ずプリンターの電源OFF時に行ってください。プリンターのファームウェア更新はBMCUを外した状態が最も安全です。",
+
+  "log_time": "時刻",
+  "log_level": "レベル",
+  "log_message": "メッセージ",
+
+  "menu_copy_selected": "選択をコピー",
+  "menu_copy_all": "すべてコピー",
+
+  "author_label": "作者: Pawel Jarczak",
+
+  "ok": "OK",
+  "cancel": "キャンセル",
+  "select": "選択",
+
+  "dlg_select_bin_title": "ファームウェア .bin を選択",
+  "dlg_bin_filter": "バイナリ",
+  "dlg_all_filter": "すべて",
+
+  "err_generic": "エラー",
+  "err_bad_vidpid": "VID/PIDが不正です",
+  "err_select_bin": "ファームウェア .bin を選択してください",
+  "err_bin_ext": "ファームウェアは .bin である必要があります",
+  "err_select_port": "ポートを選択してください",
+  "err_bad_baud": "ボーレートの値が不正です",
+  "err_select_online": "オンラインファームウェアを選択してください",
+  "err_bad_retract": "リトラクションの選択が不正です",
+
+  "help_usb_title": "USBモード",
+  "help_ttl_title": "TTLモード",
+  "help_step1": "手順 1:",
+  "help_step2": "手順 2:",
+  "help_step3": "手順 3:",
+
+  "help_usb_s1": "- USBでBMCUを接続",
+  "help_usb_s2": "- ポートを選択\n- (VID/PIDはCH340のまま)",
+  "help_usb_s3": "- ファームウェアを選択: 参照 = ローカル, オンライン = 最新をダウンロード\n- 書き込みをクリック",
+
+  "help_ttl_s1": "- USB-SerialをBMCUに配線\n- bootloaderに入る",
+  "help_ttl_s2": "- USB-Serialタイプを選択 (Baud/高速Baudのプリセット)\n- ポートを選択\n- (VID/PIDはポートのフィルタ用のみ)",
+  "help_ttl_s3": "- ファームウェアを選択: 参照 = ローカル, オンライン = 最新をダウンロード\n- 書き込みをクリック",
+
+  "help_wiring": "配線:",
+  "help_tbl_bmcu": "BMCU",
+  "help_tbl_usbserial": "USB-Serial",
+  "help_bootloader": "Bootloader:",
+  "help_boot_steps": "- BOOTを押し続ける\n- RESETをタップ\n- BOOTを放す",
+
+  "help_drivers_title": "ドライバー",
+  "help_drivers_ch340": "- CH340/CH341ドライバー (WCH):",
+  "help_link_fw": "BMCUファームウェア:",
+  "help_link_app": "BMCU Flasher:",
+
+  "online_title": "オンラインファームウェア",
+  "online_header": "ファームウェアを選択 (オンライン)",
+  "online_step1_title": "手順 1 - ロード強度",
+  "online_step2_title": "手順 2 - スロットとリトラクション",
+  "online_step3_title": "手順 3 - オプション",
+
+  "online_force_label": "フィラメントのロード強度:",
+  "online_force_hint": "Standard: A1/A1 mini (他機種でも良ければ)\nHigh force: P1S/X1C/P2Sなど (長いPTFE経路 / ロード問題 / 旧型低RPM BMCUギア)\nどちらも動作します - 好みで選択してください。",
+  "online_slot_label": "BMCUスロット:",
+  "online_retract_label": "リトラクション:",
+  "online_retract_hint": "SOLO: A1/A1 miniには9.5cm推奨。\n長いPTFE経路(P1S/P2Sなど)は60-90cmを選択 (SOLOは長いリトラクションでAMS_Aファイルを使用)。",
+  "online_autoload": "Autoload",
+  "online_rgb": "RGB LED (フィラメント色)",
+  "online_opts_hint": "Autoload: DM(スイッチ2個)の自動ロード。1-switch基板: バッファのクイックタップでAutoload。\nRGB LED: チャンネルLEDが設定したフィラメント色に一致。不要なら無効化してください。"
+}
