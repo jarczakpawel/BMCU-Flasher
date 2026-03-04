@@ -18,41 +18,41 @@ jobs:
             runs_on: windows-latest
             python: "3.11"
             py_arch: x64
-            out: BMCU-Flasher-windows-x64.zip
+            out: "BMCU-Flasher-windows-x64.zip"
 
           - id: windows-x86
             runs_on: windows-latest
             python: "3.11"
             py_arch: x86
-            out: BMCU-Flasher-windows-x86.zip
+            out: "BMCU-Flasher-windows-x86.zip"
 
           - id: linux-x64
             runs_on: ubuntu-20.04
             python: "3.11"
             py_arch: x64
-            out: BMCU-Flasher-linux-x64.tar.gz
+            out: "BMCU-Flasher-linux-x64.tar.gz"
 
           - id: linux-arm64
             runs_on: ubuntu-24.04-arm
             python: "3.11"
             py_arch: arm64
-            out: BMCU-Flasher-linux-arm64.tar.gz
+            out: "BMCU-Flasher-linux-arm64.tar.gz"
 
           - id: macos-x86_64
-            runs_on: macos-13
+            runs_on: macos-15-intel
             python: "3.11"
             py_arch: x64
             arch: x86_64
             macos_deploy: "10.15"
-            out: BMCU-Flasher-macos-x86_64.zip
+            out: "BMCU-Flasher-macos-x86_64.zip"
 
           - id: macos-arm64
-            runs_on: macos-latest
+            runs_on: macos-15
             python: "3.11"
             py_arch: arm64
             arch: arm64
             macos_deploy: "11.0"
-            out: BMCU-Flasher-macos-arm64.zip
+            out: "BMCU-Flasher-macos-arm64.zip"
 
     runs-on: ${{ matrix.runs_on }}
 
@@ -73,8 +73,6 @@ jobs:
 
       - name: Build
         shell: bash
-        env:
-          MACOSX_DEPLOYMENT_TARGET: ${{ matrix.macos_deploy }}
         run: |
           set -euo pipefail
           NAME="BMCU Flasher"
@@ -90,6 +88,7 @@ jobs:
             powershell -NoProfile -Command "Compress-Archive -Force -Path \"dist\\$NAME\\*\" -DestinationPath \"${{ matrix.out }}\""
 
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            export MACOSX_DEPLOYMENT_TARGET="${{ matrix.macos_deploy }}"
             ARCH="${{ matrix.arch }}"
 
             python -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
