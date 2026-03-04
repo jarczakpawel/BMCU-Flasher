@@ -27,31 +27,25 @@ jobs:
             out: "BMCU-Flasher-windows-x86.zip"
 
           - id: linux-x64
-            runs_on: ubuntu-20.04
+            runs_on: ubuntu-22.04
             python: "3.11"
-            py_arch: x64
             out: "BMCU-Flasher-linux-x64.tar.gz"
 
           - id: linux-arm64
             runs_on: ubuntu-24.04-arm
             python: "3.11"
-            py_arch: arm64
             out: "BMCU-Flasher-linux-arm64.tar.gz"
 
           - id: macos-x86_64
             runs_on: macos-15-intel
             python: "3.11"
-            py_arch: x64
             arch: x86_64
-            macos_deploy: "10.15"
             out: "BMCU-Flasher-macos-x86_64.zip"
 
           - id: macos-arm64
             runs_on: macos-15
             python: "3.11"
-            py_arch: arm64
             arch: arm64
-            macos_deploy: "11.0"
             out: "BMCU-Flasher-macos-arm64.zip"
 
     runs-on: ${{ matrix.runs_on }}
@@ -59,10 +53,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
           architecture: ${{ matrix.py_arch }}
+
+      - name: Setup Python (non-Windows)
+        if: runner.os != 'Windows'
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
 
       - name: Install deps
         shell: bash
@@ -88,7 +90,6 @@ jobs:
             powershell -NoProfile -Command "Compress-Archive -Force -Path \"dist\\$NAME\\*\" -DestinationPath \"${{ matrix.out }}\""
 
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            export MACOSX_DEPLOYMENT_TARGET="${{ matrix.macos_deploy }}"
             ARCH="${{ matrix.arch }}"
 
             python -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
