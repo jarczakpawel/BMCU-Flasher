@@ -17,7 +17,7 @@ if SCRIPT_DIR not in sys.path:
 import bmcu_flasher
 
 APP_NAME = "BMCU Flasher"
-APP_VERSION = "1.1"
+APP_VERSION = "1.2"
 
 FW_URL = "https://github.com/jarczakpawel/BMCU-C-PJARCZAK"
 APP_URL = "https://github.com/jarczakpawel/BMCU-Flasher"
@@ -633,6 +633,7 @@ class App(tk.Tk):
         self.tree.column("time", width=90, anchor="w", stretch=False)
         self.tree.column("level", width=80, anchor="w", stretch=False)
         self.tree.column("msg", width=720, anchor="w", stretch=True)
+        self.tree.tag_configure("action", foreground=PB_GREEN)
 
         vsb = ttk.Scrollbar(logf, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=vsb.set)
@@ -756,7 +757,8 @@ class App(tk.Tk):
                     continue
                 if ev[0] == "log":
                     _, ts, level, msg = ev
-                    self.tree.insert("", "end", values=(ts, level, msg))
+                    tags = ("action",) if level == "ACTION" else ()
+                    self.tree.insert("", "end", values=(ts, level, msg), tags=tags)
                     kids = self.tree.get_children()
                     if kids:
                         self.tree.see(kids[-1])

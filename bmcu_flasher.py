@@ -321,7 +321,7 @@ def flash_firmware(
             raise RuntimeError("autodi failed (usb mode)")
         _log(log_cb, "INFO", f"autodi ok boot_is_dtr={int(autodi[0])} boot_assert={int(autodi[1])} reset_assert={int(autodi[2])}")
     else:
-        _log(log_cb, "INFO", "ttl mode: enter bootloader now (hold BOOT, tap RESET). waiting for ISP...")
+        _log(log_cb, "ACTION", "ttl mode: enter bootloader now (hold BOOT, tap RESET). waiting for ISP...")
 
     _log(log_cb, "INFO", f"stage identify @ host_baud={isp.baud}")
 
@@ -366,7 +366,6 @@ def flash_firmware(
         isp.close()
         raise RuntimeError("read_cfg failed")
 
-    # cfg layout (WCH): [mask, 0x00, 12 bytes RDPR/USER+DATA+WPR, ... optional tail incl UID]
     cfg12 = bytearray(cfg[2:14])
     wpr = bytes(cfg12[8:12])
 
@@ -374,6 +373,122 @@ def flash_firmware(
     if len(uid) == 8:
         _log(log_cb, "INFO", f"uid={uid.hex('-')}")
     _log(log_cb, "INFO", f"cfg_rdpr_user={cfg12[0:4].hex()} cfg_data={cfg12[4:8].hex()} cfg_wpr={wpr.hex()}")
+
+    # WCHTool preamble (USB+TTL):
+    # A8(step1) -> A7 -> A2(01) -> re-enter ISP -> (A1+A7)x2 -> A8(step2) -> A7
+    _log(log_cb, "INFO", "wchtool: stage write_cfg step1 (A8)")
+    cfg12_a = bytearray(cfg12)
+    cfg12_a[0:4] = b"\xA5\x5A\x3F\xC0"
+    cfg12_a[4:8] = b"\x00\xFF\x00\xFF"
+    cfg12_a[8:12] = b"\xFF\xFF\xFF\xFF"
+
+    code, _ = isp.txrx(build_write_cfg(CFG_MASK_RDPR_USER_DATA_WPR, bytes(cfg12_a)), CMD_WRITE_CFG, 2.0)
+    if code != 0x00:
+        isp.close()
+        raise RuntimeError("write_cfg (wchtool step1) failed")
+
+    code, cfg = isp.txrx(build_read_cfg(BMCU_CFG_MASK), CMD_READ_CFG, 1.2)
+    if code != 0x00 or len(cfg) < 14:
+        isp.close()
+        raise RuntimeError("read_cfg after write_cfg (wchtool step1) failed")
+
+    cfg12 = bytearray(cfg[2:14])
+    wpr = bytes(cfg12[8:12])
+    uid = cfg[-8:] if len(cfg) >= 8 else b""
+    if len(uid) == 8:
+        _log(log_cb, "INFO", f"uid={uid.hex('-')}")
+    _log(log_cb, "INFO", f"cfg_after_step1 rdpr_user={cfg12[0:4].hex()} cfg_data={cfg12[4:8].hex()} cfg_wpr={wpr.hex()}")
+
+    _log(log_cb, "INFO", "wchtool: stage isp_end reason=0x01 (apply option bytes)")
+    try:
+        isp.txrx(build_isp_end(1), CMD_ISP_END, 1.2)
+    except Exception:
+        pass
+
+    if mode == "usb":
+        if not autodi:
+            isp.close()
+            raise RuntimeError("autodi missing (usb)")
+        _log(log_cb, "INFO", "usb: re-enter bootloader (autodi)")
+        end = time.monotonic() + 2.5
+        last_err = None
+        while True:
+            try:
+                isp.flush()
+                set_lines(isp, autodi[0], autodi[1], autodi[2])
+                time.sleep(0.02)
+                pulse_reset(isp, autodi[0], autodi[2])
+                time.sleep(0.08)
+                isp.flush()
+                code2, data2 = isp.txrx(identify_pkt, CMD_IDENTIFY, 0.8)
+                if code2 == 0x00 and len(data2) >= 2:
+                    break
+                last_err = RuntimeError("identify bad response")
+            except Exception as e:
+                last_err = e
+            if time.monotonic() >= end:
+                isp.close()
+                raise RuntimeError(f"identify failed (usb) after isp_end(01). last={last_err}")
+            time.sleep(0.10)
+    else:
+        _log(log_cb, "ACTION", "ttl: re-enter bootloader now (hold BOOT, tap RESET). waiting for ISP...")
+        end = time.monotonic() + 12.0
+        last_err = None
+        while True:
+            try:
+                isp.flush()
+                code2, data2 = isp.txrx(identify_pkt, CMD_IDENTIFY, 0.8)
+                if code2 == 0x00 and len(data2) >= 2:
+                    break
+                last_err = RuntimeError("identify bad response")
+            except Exception as e:
+                last_err = e
+            if time.monotonic() >= end:
+                isp.close()
+                raise RuntimeError(f"identify failed (ttl) after isp_end(01). last={last_err}")
+            time.sleep(0.15)
+
+    _log(log_cb, "INFO", "bootloader detected again (after isp_end(01))")
+
+    for _ in range(2):
+        code2, data2 = isp.txrx(identify_pkt, CMD_IDENTIFY, 1.0)
+        if code2 != 0x00 or len(data2) < 2:
+            isp.close()
+            raise RuntimeError("identify failed after re-enter (wchtool)")
+        code, cfg = isp.txrx(build_read_cfg(BMCU_CFG_MASK), CMD_READ_CFG, 1.2)
+        if code != 0x00 or len(cfg) < 14:
+            isp.close()
+            raise RuntimeError("read_cfg failed after re-enter (wchtool)")
+
+    cfg12 = bytearray(cfg[2:14])
+    wpr = bytes(cfg12[8:12])
+    uid = cfg[-8:] if len(cfg) >= 8 else b""
+    if len(uid) == 8:
+        _log(log_cb, "INFO", f"uid={uid.hex('-')}")
+    _log(log_cb, "INFO", f"cfg_after_reenter rdpr_user={cfg12[0:4].hex()} cfg_data={cfg12[4:8].hex()} cfg_wpr={wpr.hex()}")
+
+    _log(log_cb, "INFO", "wchtool: stage write_cfg step2 (A8)")
+    cfg12_b = bytearray(cfg12)
+    cfg12_b[0:4] = b"\xFF\xFF\x3F\xC0"
+    cfg12_b[4:8] = b"\x00\x00\x00\x00"
+    cfg12_b[8:12] = b"\xFF\xFF\xFF\xFF"
+
+    code, _ = isp.txrx(build_write_cfg(CFG_MASK_RDPR_USER_DATA_WPR, bytes(cfg12_b)), CMD_WRITE_CFG, 2.0)
+    if code != 0x00:
+        isp.close()
+        raise RuntimeError("write_cfg (wchtool step2) failed")
+
+    code, cfg = isp.txrx(build_read_cfg(BMCU_CFG_MASK), CMD_READ_CFG, 1.2)
+    if code != 0x00 or len(cfg) < 14:
+        isp.close()
+        raise RuntimeError("read_cfg after write_cfg (wchtool step2) failed")
+
+    cfg12 = bytearray(cfg[2:14])
+    wpr = bytes(cfg12[8:12])
+    uid = cfg[-8:] if len(cfg) >= 8 else b""
+    if len(uid) == 8:
+        _log(log_cb, "INFO", f"uid={uid.hex('-')}")
+    _log(log_cb, "INFO", f"cfg_after_step2 rdpr_user={cfg12[0:4].hex()} cfg_data={cfg12[4:8].hex()} cfg_wpr={wpr.hex()}")
 
     _log(log_cb, "INFO", "stage isp_key (A3)")
     if seed_random:
@@ -387,7 +502,7 @@ def flash_firmware(
         raise RuntimeError("isp_key failed")
     boot_sum = kresp[0] & 0xFF
 
-    uid_chk = cfg[2]  # keep legacy behavior (key derivation)
+    uid_chk = cfg[2]
     candidates = []
     if len(uid) == 8:
         candidates.append(("uid", calc_xor_key_uid(uid, chip_id)))
@@ -409,7 +524,6 @@ def flash_firmware(
     _log(log_cb, "INFO", f"isp_key ok (src={key_src} key_sum=0x{boot_sum:02x})")
     _log(log_cb, "INFO", "unlock ok")
 
-    # unprotect code flash if WPR is not all-FF
     if wpr != b"\xFF\xFF\xFF\xFF":
         _log(log_cb, "WARN", f"code flash protected (WPR={wpr.hex()}) -> clearing WPR + RDPR")
         cfg12[0] = 0xA5
@@ -443,7 +557,6 @@ def flash_firmware(
         raise RuntimeError("erase failed")
     _log(log_cb, "INFO", "erase ok")
 
-    # hard assert: last aligned chunk must be erased (0xFF)
     tail_addr = ((flash_bytes - BMCU_CHUNK) // BMCU_CHUNK) * BMCU_CHUNK
     ff_enc = xor_crypt(b"\xFF" * BMCU_CHUNK, xor_key)
     code, _ = isp.txrx(build_verify(tail_addr, 0x00, ff_enc), CMD_VERIFY, 1.8)
