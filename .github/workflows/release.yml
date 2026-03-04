@@ -19,36 +19,68 @@ jobs:
             python: "3.11"
             py_arch: x64
             out: "BMCU-Flasher-windows-x64.zip"
+            experimental: false
 
           - id: windows-x86
             runs_on: windows-latest
             python: "3.11"
             py_arch: x86
             out: "BMCU-Flasher-windows-x86.zip"
+            experimental: false
+
+          - id: windows-legacy-x64
+            runs_on: windows-latest
+            python: "3.8"
+            py_arch: x64
+            out: "BMCU-Flasher-windows-legacy-x64.zip"
+            experimental: true
+
+          - id: windows-legacy-x86
+            runs_on: windows-latest
+            python: "3.8"
+            py_arch: x86
+            out: "BMCU-Flasher-windows-legacy-x86.zip"
+            experimental: true
 
           - id: linux-x64
             runs_on: ubuntu-22.04
             python: "3.11"
             out: "BMCU-Flasher-linux-x64.tar.gz"
+            experimental: false
 
           - id: linux-arm64
             runs_on: ubuntu-24.04-arm
             python: "3.11"
             out: "BMCU-Flasher-linux-arm64.tar.gz"
+            experimental: false
 
           - id: macos-x86_64
             runs_on: macos-15-intel
             python: "3.11"
             arch: x86_64
+            macos_deploy: ""
             out: "BMCU-Flasher-macos-x86_64.zip"
+            experimental: false
+
+          # EXPERIMENTAL: best-effort for older macOS (Catalina 10.15, Intel)
+          - id: macos-x86_64-catalina-try
+            runs_on: macos-15-intel
+            python: "3.10"
+            arch: x86_64
+            macos_deploy: "10.15"
+            out: "BMCU-Flasher-macos-x86_64-10.15.zip"
+            experimental: true
 
           - id: macos-arm64
             runs_on: macos-15
             python: "3.11"
             arch: arm64
+            macos_deploy: ""
             out: "BMCU-Flasher-macos-arm64.zip"
+            experimental: false
 
     runs-on: ${{ matrix.runs_on }}
+    continue-on-error: ${{ matrix.experimental }}
 
     steps:
       - uses: actions/checkout@v4
@@ -91,6 +123,12 @@ jobs:
 
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
             ARCH="${{ matrix.arch }}"
+            DEPLOY="${{ matrix.macos_deploy }}"
+
+            if [[ -n "$DEPLOY" ]]; then
+              export MACOSX_DEPLOYMENT_TARGET="$DEPLOY"
+              echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET"
+            fi
 
             python -m PyInstaller --noconfirm --clean --windowed --name "$NAME" \
               --target-architecture "$ARCH" \
@@ -99,6 +137,15 @@ jobs:
               --add-data "icon.png:." \
               --add-data "i18n:i18n" \
               bmcu_flasher_gui.py
+
+            if [[ -n "$DEPLOY" ]]; then
+              PL="dist/$NAME.app/Contents/Info.plist"
+              if [[ -f "$PL" ]]; then
+                /usr/libexec/PlistBuddy -c "Delete :LSMinimumSystemVersion" "$PL" >/dev/null 2>&1 || true
+                /usr/libexec/PlistBuddy -c "Add :LSMinimumSystemVersion string $DEPLOY" "$PL" || true
+                /usr/libexec/PlistBuddy -c "Print :LSMinimumSystemVersion" "$PL" || true
+              fi
+            fi
 
             ditto -c -k --sequesterRsrc --keepParent "dist/$NAME.app" "${{ matrix.out }}"
 

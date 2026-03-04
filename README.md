@@ -7,17 +7,22 @@ Cross-platform flasher for BMCU (WCH ISP protocol).
 - OS: Linux / Windows / macOS
 - Modes:
   - USB (BMCU with CH340 on board, AutoDI)
-  - TTL (pin header / external USB-Serial, manual BOOT+RESET)
+  - TTL (pin header / external USB-Serial, manual BOOT + RESET)
 
 ## Download
-Download prebuilt binaries from Releases:
-- Windows: BMCU-Flasher-windows-x64.zip (and BMCU-Flasher-windows-x86.zip)
-- macOS:
-  - Intel (Catalina 10.15+): BMCU-Flasher-macos-x86_64.zip
-  - Apple Silicon (11.0+): BMCU-Flasher-macos-arm64.zip
-- Linux:
-  - x64: BMCU-Flasher-linux-x64.tar.gz
-  - arm64: BMCU-Flasher-linux-arm64.tar.gz
+Download prebuilt binaries from Releases.
+
+Main builds:
+- Windows x64: BMCU-Flasher-windows-x64.zip
+- Windows x86: BMCU-Flasher-windows-x86.zip
+- macOS Apple Silicon (arm64): BMCU-Flasher-macos-arm64.zip
+- macOS Intel (x86_64): BMCU-Flasher-macos-x86_64.zip
+- Linux x64: BMCU-Flasher-linux-x64.tar.gz
+- Linux arm64: BMCU-Flasher-linux-arm64.tar.gz
+
+Legacy / experimental (older OS, best-effort):
+- Windows legacy (older Windows): BMCU-Flasher-windows-legacy-x64.zip, BMCU-Flasher-windows-legacy-x86.zip
+- macOS Catalina try (10.15, Intel): BMCU-Flasher-macos-x86_64-10.15.zip
 
 ## Firmware
 Latest BMCU firmware:
@@ -34,13 +39,15 @@ In USB mode (CH340), drivers may be required on Windows.
 Linux and macOS usually work out-of-the-box.
 
 ## Usage
-GUI:
-- Use the app and click "Help" inside the program.
+GUI (recommended):
+- Run the app
+- Click "Online" to pick the exact firmware variant (slot / retract / autoload / RGB)
+- Click "Help" inside the app (wiring + BOOT/RESET steps)
 
 CLI (optional):
 - USB (auto port by VID/PID):
 ```bash
-  python3 bmcu_flasher.py firmware.bin --mode usb
+python3 bmcu_flasher.py firmware.bin --mode usb
 ```
 - TTL (manual BOOT+RESET, port required):
 ```bash
