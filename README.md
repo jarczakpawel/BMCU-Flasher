@@ -1,3 +1,37 @@
+<h1 align="center">Support</h1>
+
+<p align="center">
+  Bambu Lab continues tightening compatibility around BMCU, and there is a growing risk that BMCU may eventually become unusable in that ecosystem.
+</p>
+
+<p align="center">
+  To prepare for that, I want to build BMCU support for open-source Klipper-based printers.
+</p>
+
+<p align="center">
+  I am currently raising funds to buy a test printer for this work.
+</p>
+
+<p align="center">
+  The $500 goal does not need to be reached in full. If I manage to save the remaining amount myself, I will cover the rest out of my own pocket.
+</p>
+
+<p align="center">
+  <a href="https://ko-fi.com/jarczakpawel/goal?g=0">
+    <img src="./banner-klipper.png" alt="Want BMCU on Klipper? Click the links below to support development." width="460">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://ko-fi.com/jarczakpawel/goal?g=0"><strong>Support on Ko-fi</strong></a>
+  ·
+  <a href="https://revolut.me/paweqxdkx"><strong>Support via Revolut</strong></a>
+</p>
+
+<p align="center">
+  Direct Revolut support avoids Ko-fi fees, so more of your contribution goes directly to the project.
+</p>
+
 # BMCU Flasher
 
 Cross-platform flasher for BMCU (WCH ISP protocol).
