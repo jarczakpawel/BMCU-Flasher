@@ -134,6 +134,47 @@
       android:layout_marginBottom="12dp"
       android:background="@color/bmcu_divider"/>
 
+      <TextView
+    android:id="@+id/txtLocalTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/bmcu_fg"
+    android:text="Local firmware"
+    android:textStyle="bold"
+    android:textSize="16sp"
+    android:layout_marginBottom="10dp" />
+  
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="12dp">
+    <Button
+      android:id="@+id/btnSelectFile"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/bmcu_fg"
+      android:background="@drawable/bmcu_button"
+      android:text="Select .bin file" />
+    <TextView
+      android:id="@+id/txtSelectedFile"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:layout_marginStart="10dp"
+      android:layout_gravity="center_vertical"
+      android:textColor="@color/bmcu_fg"
+      android:text="No file selected"
+      android:singleLine="true"
+      android:ellipsize="end" />
+  </LinearLayout>
+
+<View
+  android:layout_width="match_parent"
+  android:layout_height="1dp"
+  android:layout_marginBottom="12dp"
+  android:background="@color/bmcu_divider" />
+    
     <TextView
       android:id="@+id/txtOnlineTitle"
       android:layout_width="match_parent"
