@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:  # 添加这一行，开启手动触发
 
 permissions:
   contents: write
