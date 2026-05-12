@@ -28,6 +28,9 @@ import java.util.Locale
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
+  private val REQUEST_CODE_PICK_FILE = 1001
+  private var selectedFirmwareFile: File? = null
+  
   private lateinit var b: ActivityMainBinding
   private lateinit var usb: UsbManager
   private lateinit var i18n: I18n
@@ -88,6 +91,9 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    
+    b.btnSelectFile.setOnClickListener { selectLocalFirmware() }
+    
     b = ActivityMainBinding.inflate(layoutInflater)
     setContentView(b.root)
 
@@ -447,4 +453,62 @@ class MainActivity : AppCompatActivity() {
       override fun onNothingSelected(parent: AdapterView<*>) {}
     }
   }
+
+    private fun selectLocalFirmware() {
+    // 请求存储权限
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      if (!android.os.Environment.isExternalStorageManager()) {
+        val intent = Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+        intent.data = android.net.Uri.parse("package:$packageName")
+        startActivity(intent)
+        Toast.makeText(this, "Please grant file access permission", Toast.LENGTH_LONG).show()
+        return
+      }
+    } else {
+      if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+        requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
+        return
+      }
+    }
+  
+    // 打开文件选择器
+    val intent = Intent(Intent.ACTION_GET_CONTENT)
+    intent.type = "application/octet-stream"
+    intent.addCategory(Intent.CATEGORY_OPENABLE)
+    startActivityForResult(Intent.createChooser(intent, "Select firmware file"), REQUEST_CODE_PICK_FILE)
+  }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+  super.onActivityResult(requestCode, resultCode, data)
+  if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK && data != null) {
+    val uri = data.data ?: return
+    try {
+      // 复制文件到应用缓存目录（避免Content URI权限问题）
+      val inputStream = contentResolver.openInputStream(uri) ?: throw RuntimeException("Failed to open file")
+      val fileName = uri.lastPathSegment ?: "firmware.bin"
+      val tempFile = File(cacheDir, fileName)
+      
+      inputStream.use { input ->
+        tempFile.outputStream().use { output ->
+          input.copyTo(output)
+        }
+      }
+      
+      // 验证文件是否为bin格式
+      if (!fileName.endsWith(".bin", ignoreCase = true)) {
+        throw RuntimeException("Please select a .bin file")
+      }
+      
+      selectedFirmwareFile = tempFile
+      b.txtSelectedFile.text = fileName
+      log("INFO", "local: selected $fileName (${tempFile.length()} bytes)")
+      
+    } catch (e: Exception) {
+      Toast.makeText(this, "Failed to select file: ${e.message}", Toast.LENGTH_LONG).show()
+      log("ERROR", "local: ${e.message}")
+      selectedFirmwareFile = null
+      b.txtSelectedFile.text = "No file selected"
+    }
+  }
+}
 }
